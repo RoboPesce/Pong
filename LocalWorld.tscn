@@ -1,0 +1,118 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://paddle.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Ball.tscn" type="PackedScene" id=2]
+[ext_resource path="res://joystix monospace.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://World.gd" type="Script" id=4]
+[ext_resource path="res://end.png" type="Texture" id=5]
+
+[sub_resource type="SegmentShape2D" id=1]
+b = Vector2( 800, 0 )
+
+[sub_resource type="SegmentShape2D" id=2]
+a = Vector2( 0, 600 )
+b = Vector2( 800, 600 )
+
+[sub_resource type="SegmentShape2D" id=3]
+b = Vector2( 0, 600 )
+
+[sub_resource type="SegmentShape2D" id=4]
+a = Vector2( 800, 0 )
+b = Vector2( 800, 600 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 40
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 40
+font_data = ExtResource( 3 )
+
+[node name="World" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="lpaddle" parent="." groups=[
+"paddles",
+] instance=ExtResource( 1 )]
+position = Vector2( 50, 300 )
+is_left = true
+
+[node name="rpaddle" parent="." groups=[
+"paddles",
+] instance=ExtResource( 1 )]
+position = Vector2( 750, 300 )
+
+[node name="topbody" type="StaticBody2D" parent="." groups=[
+"vertbounds",
+]]
+
+[node name="topbound" type="CollisionShape2D" parent="topbody" groups=[
+"vertbounds",
+]]
+shape = SubResource( 1 )
+
+[node name="bottombody" type="StaticBody2D" parent="." groups=[
+"vertbounds",
+]]
+
+[node name="bottombound" type="CollisionShape2D" parent="bottombody" groups=[
+"vertbounds",
+]]
+shape = SubResource( 2 )
+
+[node name="leftbody" type="StaticBody2D" parent="." groups=[
+"horbounds",
+]]
+
+[node name="leftbound" type="CollisionShape2D" parent="leftbody" groups=[
+"horbounds",
+"leftbound",
+]]
+shape = SubResource( 3 )
+
+[node name="rightbody" type="StaticBody2D" parent="." groups=[
+"horbounds",
+]]
+
+[node name="rightbound" type="CollisionShape2D" parent="rightbody" groups=[
+"horbounds",
+]]
+shape = SubResource( 4 )
+
+[node name="Ball" parent="." instance=ExtResource( 2 )]
+position = Vector2( 400, 300 )
+SPEED = 4
+
+[node name="RScore" type="Label" parent="."]
+margin_right = 117.0
+margin_bottom = 48.0
+custom_fonts/font = SubResource( 5 )
+text = "0"
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="LScore" type="Label" parent="."]
+margin_left = 708.0
+margin_top = 1.0
+margin_right = 799.0
+margin_bottom = 49.0
+custom_fonts/font = SubResource( 6 )
+text = "0"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="EndButton" type="TextureButton" parent="."]
+margin_left = 360.0
+margin_top = 10.0
+margin_right = 439.0
+margin_bottom = 50.0
+texture_normal = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="l_score" from="Ball" to="." method="_on_Ball_l_score"]
+[connection signal="r_score" from="Ball" to="." method="_on_Ball_r_score"]
+[connection signal="pressed" from="EndButton" to="." method="_on_EndButton_pressed"]

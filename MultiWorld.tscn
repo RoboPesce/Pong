@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://paddle_multiplayer.tscn" type="PackedScene" id=1]
+[ext_resource path="res://end.png" type="Texture" id=2]
+[ext_resource path="res://game_network.gd" type="Script" id=4]
+
+[node name="root" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="PlayerPaddle" parent="." instance=ExtResource( 1 )]
+position = Vector2( 50, 300 )
+
+[node name="EndButton" type="TextureButton" parent="."]
+margin_left = 360.0
+margin_top = 10.0
+margin_right = 439.0
+margin_bottom = 50.0
+texture_normal = ExtResource( 2 )
+
+[connection signal="pressed" from="EndButton" to="." method="_on_TextureButton_pressed"]
