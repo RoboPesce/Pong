@@ -1,11 +1,8 @@
-extends KinematicBody2D
-
-const SPEED = 250
+extends "res://paddle/paddle_base.gd"
 
 export(bool) var is_left
-var move_dir = 0
 
-func _physics_process(delta):
+func read_input() -> void:
 	if is_left:
 		if Input.is_action_pressed("l_up"):
 			move_dir = -1
@@ -18,7 +15,8 @@ func _physics_process(delta):
 		elif Input.is_action_pressed("r_down"):
 			move_dir = 1
 		else: move_dir = 0
-	
+
+func update_position(delta: float) -> void:
 	position.y = clamp(position.y, 0, 600)
-	move_and_slide(Vector2(0, move_dir * SPEED), Vector2(0, -1))
-	
+	var movement : Vector2 = Vector2(0, move_dir * SPEED * delta)
+	move_and_collide(movement)

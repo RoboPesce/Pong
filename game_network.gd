@@ -1,6 +1,6 @@
 extends Node2D
 
-const DEFAULT_IP = 'ec2-3-81-142-152.compute-1.amazonaws.com' # '3.81.142.152'
+const DEFAULT_IP = "127.0.0.1"
 const DEFAULT_PORT = 4242
 
 func _ready():
@@ -28,10 +28,12 @@ func _connected_ok():
 func _connected_fail():
 	print("Failed to connect to server, either down or full")
 	get_tree().set_network_peer(null)
-	get_tree().change_scene("res://Lobby.tscn")
+	get_tree().change_scene("res://lobby/Lobby.tscn")
 
 func _server_disconnect():
-	pass
+	print("Disconnected from server")
+	get_tree().set_network_peer(null)
+	get_tree().change_scene("res://lobby/Lobby.tscn")
 
 remote func set_other_player_id(id):
 	if id == -1:
@@ -43,7 +45,7 @@ remote func set_other_player_id(id):
 	globals.otherPlayerId = id
 	print("other id set to " + str(id) + ", creating paddle")
 	# add other paddle
-	var mpaddle = preload("res://paddle_multiplayer.tscn").instance()
+	var mpaddle = preload("res://paddle/paddle_multiplayer.tscn").instance()
 	mpaddle.name = str(id)
 	mpaddle.control = false
 	mpaddle.position = Vector2(750, 300)
@@ -63,4 +65,4 @@ func _player_disconnected(id):
 
 func _on_TextureButton_pressed():
 	get_tree().set_network_peer(null)
-	get_tree().change_scene("res://Lobby.tscn")
+	get_tree().change_scene("res://lobby/Lobby.tscn")

@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Local.png" type="Texture" id=1]
-[ext_resource path="res://Join.png" type="Texture" id=2]
-[ext_resource path="res://joystix monospace.ttf" type="DynamicFontData" id=3]
-[ext_resource path="res://Lobby.gd" type="Script" id=5]
+[ext_resource path="res://res/Local.png" type="Texture" id=1]
+[ext_resource path="res://res/Join.png" type="Texture" id=2]
+[ext_resource path="res://res/joystix monospace.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://lobby/Lobby.gd" type="Script" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 100

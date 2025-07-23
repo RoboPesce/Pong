@@ -15,8 +15,8 @@ _global_script_class_icons={
 [application]
 
 config/name="Pong"
-run/main_scene="res://Lobby.tscn"
-config/icon="res://icon.png"
+run/main_scene="res://lobby/Lobby.tscn"
+config/icon="res://res/icon.png"
 
 [autoload]
 
@@ -64,4 +64,3 @@ r_stop={
 [rendering]
 
 environment/default_clear_color=Color( 0, 0, 0, 1 )
-environment/default_environment="res://default_env.tres"

@@ -10,4 +10,4 @@ func _on_Ball_r_score():
 	RScore.text = str(int(RScore.text) + 1)
 
 func _on_EndButton_pressed():
-	get_tree().change_scene("res://Lobby.tscn")
+	get_tree().change_scene("res://lobby/Lobby.tscn")
